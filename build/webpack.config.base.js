@@ -1,7 +1,7 @@
 'use strict'
 
 const HtmlWebpackPlugin = require('html-webpack-plugin')
-// const CopyWebpackPlugin = require('copy-webpack-plugin')
+const CopyWebpackPlugin = require('copy-webpack-plugin')
 const { VueLoaderPlugin } = require('vue-loader')
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 
@@ -15,7 +15,7 @@ const vuePkg = [
 
 module.exports = {
   entry: {
-    index: utils.resolve('src/index.js'),
+    index: utils.resolve('src/index.js'), 
     vue: vuePkg,
   },
 
@@ -37,12 +37,12 @@ module.exports = {
       minChunks: 1,
       maxAsyncRequests: 5,
       maxInitialRequests: 3,
-      automaticNameDelimiter: '~',
-      name: true,
+      automaticNameDelimiter: '-',
       cacheGroups: {
         vendor: {
           test: /[\\/]node_modules[\\/]/,
-          priority: -10
+          priority: -10, 
+          enforce: true,
         },
         default: {
           minSize: 0,
@@ -125,16 +125,16 @@ module.exports = {
 
     new HtmlWebpackPlugin({
       template: utils.resolve('src/assets/ejs/index.ejs'),
-      filename: utils.resolve('public/index.html'),
+      filename: utils.resolve('public/index.html'), 
       hash: true,
       inject: true
-    }),
+    }), 
+ 
     new VueLoaderPlugin(),
 
-    // new CopyWebpackPlugin([{
-    //   from: utils.resolve('assets/img'),
-    //   to: utils.resolve('dist/static/img'),
-    //   toType: 'dir'
-    // }])
+    new CopyWebpackPlugin([{
+      from: utils.resolve('src/assets/imgs'),
+      to: utils.resolve('public/assets/img')
+    }])
   ]
 }
