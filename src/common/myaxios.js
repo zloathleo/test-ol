@@ -1,12 +1,11 @@
 import axios from 'axios'
 import globalvar from './globalvar';
 
-console.log("初始化axios");
+console.log("初始化axios,", globalvar.fetchServerHostURL);
 axios.defaults.baseURL = globalvar.fetchServerHostURL;
 //设置默认请求头
 axios.defaults.headers = {
-    'Content-Type': 'application/x-www-form-urlencoded',
-    "Content-Type": "application/json;charset=utf-8",
+    'Content-Type': 'application/x-www-form-urlencoded', 
     'Cache-Control': 'no-cache,no-store',
 }
 

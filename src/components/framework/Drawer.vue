@@ -5,36 +5,21 @@
 
         <transition name="slide-fade">
             <div v-show="isShowDraw" class="drawer-content">
-                <a class="dropdown-item" v-bind:class="{ 'is-active': selectedKey == 'dashboard' }" @click="clickMenu('dashboard')">
+
+                <div class="side-header">
+                    <b-icon icon="google-circles" size="is-small">
+                    </b-icon>
+                    <span class="side-header-appname">{{appName}}</span>
+                </div>
+
+                <a class="dropdown-item" v-for="item in items" v-bind:class="{ 'is-active': selectedKey == item.key }" @click="clickMenu(item.key)">
                     <div class="media">
                         <span class="icon media-left">
-                            <i class="mdi mdi-view-dashboard mdi-24px"></i>
+                            <b-icon icon="view-dashboard" />
                         </span>
                         <div class="media-content">
-                            <h3>Dashboard</h3>
-                            <small>Everyone can see</small>
-                        </div>
-                    </div>
-                </a>
-                <a class="dropdown-item" v-bind:class="{ 'is-active': selectedKey == 'device-control' }" @click="clickMenu('device-control')">
-                    <div class="media">
-                        <span class="icon media-left">
-                            <i class="mdi mdi-fire mdi-24px"></i>
-                        </span>
-                        <div class="media-content">
-                            <h3>Device Control</h3>
-                            <small>Only controller can see</small>
-                        </div>
-                    </div>
-                </a>
-                <a class="dropdown-item" v-bind:class="{ 'is-active': selectedKey == 'alarm' }" @click="clickMenu('alarm')">
-                    <div class="media">
-                        <span class="icon media-left">
-                            <i class="mdi mdi-alert mdi-24px"></i>
-                        </span>
-                        <div class="media-content">
-                            <h3>Alarm</h3>
-                            <small>System Alarm</small>
+                            <h3>{{item.display}}</h3>
+                            <small>{{item.display}}</small>
                         </div>
                     </div>
                 </a>
@@ -46,6 +31,14 @@
 </template>
 
 <style scoped lang="less">
+.side-header {
+  margin: 0 auto;
+  padding: 1rem 1.5rem;
+  max-width: 100%;
+  .side-header-appname {
+    font-weight: 600;
+  }
+}
 .modal-background {
   z-index: 40;
   background-color: rgba(10, 10, 10, 0.5);
@@ -80,6 +73,27 @@ export default {
         return {
             isShowDraw: false,
             selectedKey: "dashboard",
+            appName: "后台管理",
+            items: [
+                {
+                    key: "dashboard",
+                    display: "Dashboard",
+                    icon: "view-dashboard",
+                    desc: ""
+                },
+                {
+                    key: "device-control",
+                    display: "Device Control",
+                    icon: "view-dashboard",
+                    desc: ""
+                },
+                {
+                    key: "alarm",
+                    display: "Alarm",
+                    icon: "view-dashboard",
+                    desc: ""
+                }
+            ]
         }
     },
     mounted() {

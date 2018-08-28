@@ -3,7 +3,7 @@ import Mock from 'mockjs'
 import myaxios from './myaxios';
 
 let mock = new MockAdapter(myaxios, {
-    delayResponse: 3000
+    delayResponse: 300
 });
 
 mock.onGet('/dashboard-commondata').reply(200, Mock.mock(

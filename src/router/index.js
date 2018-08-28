@@ -6,8 +6,15 @@ Vue.use(Router);
 export default new Router({
   routes: [
     {
+      name: 'index',
       path: '/',
-      redirect: '/dashboard'
+      redirect: '/login'
+    },
+    {
+      name: 'login',
+      path: '/login',
+      component: resolve => require(['../components/login/Content.vue'], resolve),
+      meta: { title: 'login' }
     },
     {
       path: '/',
