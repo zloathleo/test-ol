@@ -147,14 +147,14 @@
 /******/
 /******/
 /******/ 	// add entry module to deferred list
-/******/ 	deferredModules.push([4,"vendor-index-vue"]);
+/******/ 	deferredModules.push([6,"vendor-index-vue"]);
 /******/ 	// run deferred modules when ready
 /******/ 	return checkDeferredModules();
 /******/ })
 /************************************************************************/
 /******/ ({
 
-/***/ 4:
+/***/ 6:
 /*!**********************************!*\
   !*** multi vue vue-router buefy ***!
   \**********************************/

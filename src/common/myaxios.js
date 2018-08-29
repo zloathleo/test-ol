@@ -1,15 +1,23 @@
 import axios from 'axios'
+import qs from 'qs';
 import globalvar from './globalvar';
 
 console.log("初始化axios,", globalvar.fetchServerHostURL);
 axios.defaults.baseURL = globalvar.fetchServerHostURL;
 //设置默认请求头
 axios.defaults.headers = {
-    'Content-Type': 'application/x-www-form-urlencoded', 
+    'Content-Type': 'application/x-www-form-urlencoded',
     'Cache-Control': 'no-cache,no-store',
 }
 
 axios.defaults.timeout = 10000;
+
+//不使用URLSearchParams  
+axios.defaults.transformRequest = [function (data) {
+    data = qs.stringify(data);
+    console.log(data);
+    return data;
+}];
 
 //响应拦截器即异常处理
 axios.interceptors.response.use(function (response) {

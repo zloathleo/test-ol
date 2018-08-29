@@ -19,21 +19,14 @@
 
 <script>
 import globalvar from '../../common/globalvar';
-import statePersisted from '../../common/state-persisted';
 import Toolbar from './Toolbar.vue';
 import Drawer from './Drawer.vue';
 import Footer from './Footer.vue';
 export default {
     components: { Toolbar, Drawer, Footer },
-    beforeCreate() {
-        let _currentUser = statePersisted.state.user;
-        if (_currentUser == undefined) {
-            this.$router.push({ name: 'login' });
-        }
-    },
+
     data() {
         return {
-            appName: globalvar.appName,
             isAppLoading: false,//是否loading状态
         }
     },

@@ -1,7 +1,11 @@
-import createPersistedState from "vuex-persistedstate";
+import Vue from 'vue';
 import Vuex from 'vuex';
+import createPersistedState from "vuex-persistedstate";
+import storejs from 'store';
 
-const store = new Vuex.Store({
+Vue.use(Vuex);
+
+const vuexStore = new Vuex.Store({
     state: {
         user: undefined
     },
@@ -10,7 +14,21 @@ const store = new Vuex.Store({
             state.user = value;
         },
     },
-    plugins: [createPersistedState()]
+    plugins: [
+        createPersistedState({
+            storage: {
+                getItem: function (key) {
+                    return storejs.get(key);
+                },
+                setItem: function (key, value) {
+                    storejs.set(key, value);
+                },
+                removeItem: function (key) {
+                    storejs.remove(key);
+                }
+            }
+        })
+    ]
 });
 
-export default store
+export default vuexStore;

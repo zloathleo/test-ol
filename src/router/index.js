@@ -8,7 +8,7 @@ export default new Router({
     {
       name: 'index',
       path: '/',
-      redirect: '/login'
+      redirect: { name: 'login' }
     },
     {
       name: 'login',
@@ -17,10 +17,30 @@ export default new Router({
       meta: { title: 'login' }
     },
     {
-      path: '/',
+      path: '/my',
       component: resolve => require(['../components/framework/Root.vue'], resolve),
       meta: { title: 'root' },
       children: [
+         //operator
+        {
+          name: 'device',
+          path: '/device',
+          component: resolve => require(['../components/device/Content.vue'], resolve),
+          meta: { title: 'device' }
+        },
+        //admin
+        {
+          name: 'group',
+          path: '/group',
+          component: resolve => require(['../components/group/Content.vue'], resolve),
+          meta: { title: 'group' }
+        },
+        {
+          name: 'dashboard',
+          path: '/dashboard',
+          component: resolve => require(['../components/dashboard/Content.vue'], resolve),
+          meta: { title: 'dashboard' }
+        },
         {
           name: 'dashboard',
           path: '/dashboard',

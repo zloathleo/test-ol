@@ -68,35 +68,18 @@
 </style>
 
 <script>
+import stateMem from '../../common/state-mem';
 export default {
     data() {
         return {
             isShowDraw: false,
             selectedKey: "dashboard",
             appName: "后台管理",
-            items: [
-                {
-                    key: "dashboard",
-                    display: "Dashboard",
-                    icon: "view-dashboard",
-                    desc: ""
-                },
-                {
-                    key: "device-control",
-                    display: "Device Control",
-                    icon: "view-dashboard",
-                    desc: ""
-                },
-                {
-                    key: "alarm",
-                    display: "Alarm",
-                    icon: "view-dashboard",
-                    desc: ""
-                }
-            ]
+            items: undefined,
         }
     },
     mounted() {
+        this.items = stateMem.state.menuItems;
         let _this = this;
         this.$globalEventHub.$on("showDrawer", function () {
             _this.isShowDraw = true;
