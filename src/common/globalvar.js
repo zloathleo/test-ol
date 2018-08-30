@@ -66,6 +66,36 @@ export default {
         }
     ],
 
+    parseDateTime: function (_long) {
+        if (_long) {
+            return new Date(_long).Format("yyyy-MM-dd HH:mm:ss");
+        } else {
+            return "-";
+        }
+    },
+
+    toastSuccess: function (_vue, _message) {
+        _vue.$toast.open({
+            queue: false,
+            message: _message,
+            position: 'is-bottom',
+            type: 'is-success'
+        });
+    },
+
+    toastError: function (_vue, errdesc, error) {
+        let _message = errdesc;
+        if (error !== undefined) {
+            console.error(error);
+            _message += " - " + this.parseError(error)
+        }
+        _vue.$toast.open({
+            queue: false,
+            message: _message,
+            position: 'is-bottom',
+            type: 'is-danger'
+        });
+    },
 
     parseError: function (error) {
         if (error && error.response && error.response.data) {

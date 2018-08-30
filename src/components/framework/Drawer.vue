@@ -1,17 +1,14 @@
 <template>
 
     <div>
-        <div v-show="isShowDraw" class="modal-background" @click="isShowDraw = false"></div>
-
+        <div v-show="isShowDraw" class="modal-background" @click="isShowDraw = false"></div> 
         <transition name="slide-fade">
-            <div v-show="isShowDraw" class="drawer-content">
-
+            <div v-show="isShowDraw" class="drawer-content"> 
                 <div class="side-header">
                     <b-icon icon="google-circles" size="is-small">
                     </b-icon>
                     <span class="side-header-appname">{{appName}}</span>
-                </div>
-
+                </div> 
                 <a class="dropdown-item" v-for="item in items" v-bind:class="{ 'is-active': selectedKey == item.key }" @click="clickMenu(item.key)">
                     <div class="media">
                         <span class="icon media-left">
@@ -73,13 +70,14 @@ export default {
     data() {
         return {
             isShowDraw: false,
-            selectedKey: "dashboard",
+            selectedKey: undefined,
             appName: "后台管理",
             items: undefined,
         }
     },
     mounted() {
         this.items = stateMem.state.menuItems;
+        this.selectedKey = stateMem.state.currentRouteName;
         let _this = this;
         this.$globalEventHub.$on("showDrawer", function () {
             _this.isShowDraw = true;

@@ -15,7 +15,7 @@ const vuePkg = [
 
 module.exports = {
   entry: {
-    index: utils.resolve('src/index.js'), 
+    index: utils.resolve('src/index.js'),
     vue: vuePkg,
   },
 
@@ -41,7 +41,7 @@ module.exports = {
       cacheGroups: {
         vendor: {
           test: /[\\/]node_modules[\\/]/,
-          priority: -10, 
+          priority: -10,
           enforce: true,
         },
         default: {
@@ -84,6 +84,20 @@ module.exports = {
         test: /\.less$/,
         use: ['style-loader', 'css-loader', 'less-loader'] // 编译顺序从右往左
       },
+
+      {
+        test: /(\.scss|\.sass)$/,
+        exclude: /node_modules/,
+        use: ['style-loader', 'css-loader',   'sass-loader']
+      },
+      // {
+      //   test: /\.scss$/,
+      //   use: [
+      //     "style-loader", // creates style nodes from JS strings
+      //     "css-loader", // translates CSS into CommonJS
+      //     "sass-loader" // compiles Sass to CSS, using Node Sass by default
+      //   ]
+      // },
       {
         test: /\.(png|jpe?g|gif|svg)(\?.*)?$/,
         use: {
@@ -125,11 +139,11 @@ module.exports = {
 
     new HtmlWebpackPlugin({
       template: utils.resolve('src/assets/ejs/index.ejs'),
-      filename: utils.resolve('public/index.html'), 
+      filename: utils.resolve('public/index.html'),
       hash: true,
       inject: true
-    }), 
- 
+    }),
+
     new VueLoaderPlugin(),
 
     new CopyWebpackPlugin([{

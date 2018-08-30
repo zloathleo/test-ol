@@ -14,10 +14,34 @@ axios.defaults.timeout = 10000;
 
 //不使用URLSearchParams  
 axios.defaults.transformRequest = [function (data) {
-    data = qs.stringify(data);
-    console.log(data);
-    return data;
+    if (data === undefined) {
+        return data;
+    } else {
+        data = qs.stringify(data);
+        return data;
+    }
+
 }];
+
+//请求拦截器
+axios.interceptors.request.use(function (config) {
+    console.log("request use:", config);
+    globalvar.GlobalEventHub.$emit('appLoading', true);
+    return config;
+}, function (error) {
+    globalvar.GlobalEventHub.$emit('appLoading', true);
+    return Promise.reject(error);
+});
+
+// 添加响应拦截器
+axios.interceptors.response.use(function (response) {
+    console.log("response use:", response);
+    globalvar.GlobalEventHub.$emit('appLoading', false);
+    return response;
+}, function (error) {
+    globalvar.GlobalEventHub.$emit('appLoading', false);
+    return Promise.reject(error);
+});
 
 //响应拦截器即异常处理
 axios.interceptors.response.use(function (response) {

@@ -3,3 +3,33 @@ body {
     height: 100%;
     overflow: hidden;
 }
+
+/*主页面*/
+
+.block-header-end {
+    display: flex;
+    justify-content: flex-end;
+    float: right;
+}
+
+.block-title {
+    font-size: 18px;
+    font-weight: 600;
+    text-transform: uppercase;
+    line-height: 1.2;
+}
+
+.table thead th {
+    padding: 12px 10px !important;
+}
+
+.text-center {
+    text-align: center !important;
+    font-size: 15px;
+    font-weight: 600;
+    text-transform: uppercase;
+}
+
+.pagination-list {
+    list-style: none !important;
+}

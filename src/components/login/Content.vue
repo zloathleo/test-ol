@@ -20,7 +20,7 @@
                         </b-field>
 
                         <div class="columns is-mobile loginButtonPane">
-                            <button ref="loginSubmit" class="button is-small is-primary column is-half is-offset-one-quarter loginButton" @click="login">
+                            <button ref="loginSubmit" class="button is-small is-primary column is-half is-offset-one-quarter loginButton" v-bind:class="{ 'is-loading': isLogining }" @click="login">
                                 系统登录
                             </button>
                         </div>
@@ -60,10 +60,14 @@
 
 <script> 
 import jsmd5 from 'js-md5';
-import globalvar from '../../common/globalvar';
 import statePersisted from '../../common/state-persisted';
 import stateMem from '../../common/state-mem';
 export default {
+    data() {
+        return {
+            isLogining: false
+        }
+    },
     mounted() {
         let _this = this;
         document.onkeydown = function (e) {
@@ -77,6 +81,7 @@ export default {
     },
     methods: {
         login: function () {
+            this.isLogining = true;
             let un = this.$refs.inputUsername.newValue;
             let pw = this.$refs.inputPassword.newValue;
             let _this = this;
@@ -90,15 +95,15 @@ export default {
                 };
 
                 this.$myaxios.post(url, params).then(function (res) {
-                    _this.$toast.open({
-                        message: "用户登录成功,进入主页面",
-                        position: 'is-bottom',
-                        type: 'is-success'
-                    });
+                    _this.$globalvar.toastSuccess(_this, "用户登录成功,进入主页面");
 
                     let _user = res.data;
+                    
+                    _this.$myaxios.defaults.headers.accessToken = _user.token;
                     statePersisted.commit("setUser", _user);
                     stateMem.commit("initUserUI", _user);
+
+                    _this.isLogining = false;
 
                     let _routeName = stateMem.state.dashboardRouteName;
                     console.log(_routeName);
@@ -109,25 +114,17 @@ export default {
                 }).catch(function (error) {
                     statePersisted.commit("setUser", undefined);
                     stateMem.commit("initUserUI", undefined);
+                    _this.isLogining = false;
 
-                    _this.$toast.open({
-                        message: "登录异常 - " + globalvar.parseError(error),
-                        position: 'is-bottom',
-                        type: 'is-danger'
-                    });
+                    _this.$globalvar.toastError(_this, "登录异常", error);
                 });
             } else {
                 statePersisted.commit("setUser", undefined);
                 stateMem.commit("initUserUI", undefined);
+                _this.isLogining = false;
 
-                _this.$toast.open({
-                    message: "用户名,密码不合法或为空",
-                    position: 'is-bottom',
-                    type: 'is-danger'
-                });
+                _this.$globalvar.toastError(_this, "用户名/密码不合法或为空");
             }
-
-            // this.$router.push({ name: 'dashboard' });
         }
     }
 }
