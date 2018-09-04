@@ -46,9 +46,7 @@ $radius-large: 0;
 @import "~bulma";
 @import "~buefy/src/scss/buefy";
 
-.button,
-.input,
-.button,
+.button, 
 .control.has-icons-left .icon,
 .control.has-icons-right .icon,
 .input,
@@ -57,9 +55,9 @@ $radius-large: 0;
 .pagination-next,
 .pagination-previous,
 .select,
-.select select,
+// .select select,
 .textarea,
 .progress,
 .tag {
   border-radius: $radius;
-}
+}  

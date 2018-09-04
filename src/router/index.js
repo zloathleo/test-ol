@@ -34,6 +34,12 @@ export default new Router({
           component: resolve => require(['../components/page/Content.vue'], resolve),
           meta: { title: 'page' }
         },
+        {
+          name: 'message',
+          path: '/message',
+          component: resolve => require(['../components/message/Content.vue'], resolve),
+          meta: { title: 'message' }
+        },
       ]
     },
     {

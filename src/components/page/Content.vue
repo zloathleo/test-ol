@@ -1,23 +1,6 @@
 <template>
   <div>
-    <div class="block">
-
-      <div class="block-header-end buttons">
-        <button class="button is-small is-primary">
-          <span class="icon">
-            <i class="mdi mdi-plus"></i>
-          </span>
-          <span>添加</span>
-        </button>
-        <button class="button is-small is-success">
-          <span class="icon">
-            <i class="mdi mdi-refresh"></i>
-          </span>
-          <span>刷新</span>
-        </button>
-      </div>
-      <div class="block-title">管理</div>
-    </div>
+    <DefaultToolbar title="管理" @addItem="addItem" @refreshTable="refreshTable" @pageCountChange="pageCountChange" />
 
     <div class="column">
       <table class="table is-bordered is-striped is-narrow is-hoverable is-fullwidth">
@@ -54,7 +37,7 @@
       </table>
     </div>
 
-    <b-pagination :total="total" :current.sync="current" size="is-small" per-page="10">
+    <b-pagination :total="total" :current.sync="current" size="is-small" :per-page="perPage">
     </b-pagination>
 
   </div>
@@ -64,31 +47,45 @@
 </style>
 
 <script> 
-import ModalDelete from './PageDelete.vue';
+import DefaultToolbar from '../share/DefaultToolbar.vue';
+import ModalDelete from './Delete.vue';
+import ModalAdd from './Add.vue';
 export default {
   components: {
+    DefaultToolbar
   },
   data() {
     return {
       tableData: [],
       total: 0,
       current: 1,
+      perPage: 10,
     }
   },
   mounted() {
-    let _this = this;
-
-    this.$myaxios.get('/pages').then(function (response) {
-      let _resData = response.data;
-      _this.tableData = _resData.rows;
-      _this.total = _resData.total;
-    }).catch(function (err) {
-      _this.$globalvar.toastError(_this, "获取表格数据异常", err);
-    });
-
-
+    this.refreshTable();
   },
   methods: {
+    refreshTable() {
+      let _this = this;
+      this.$myaxios.get('/pages').then(function (response) {
+        let _resData = response.data;
+        _this.tableData = _resData.rows;
+        _this.total = _resData.total;
+      }).catch(function (err) {
+        _this.$globalvar.toastError(_this, "获取表格数据异常", err);
+      });
+    },
+    pageCountChange(_pageCount) {
+      this.perPage = _pageCount;
+    },
+    addItem() {
+      // this.$modal.open({
+      //   parent: this, 
+      //   component: ModalAdd,
+      //   hasModalCard: true
+      // })
+    },
     editItem(item) {
 
     },
@@ -98,7 +95,7 @@ export default {
         props: item,
         component: ModalDelete,
         hasModalCard: true
-      })
+      });
     },
     publicItem(item) {
 

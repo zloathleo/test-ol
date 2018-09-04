@@ -17,10 +17,15 @@ axios.defaults.transformRequest = [function (data) {
     if (data === undefined) {
         return data;
     } else {
-        data = qs.stringify(data);
-        return data;
-    }
+        let _type = data.constructor;
+        if ("FormData" === _type.name) {
+            return data;
+        } else {
+            data = qs.stringify(data);
+            return data;
+        }
 
+    } 
 }];
 
 //请求拦截器

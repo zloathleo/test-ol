@@ -74,6 +74,16 @@ export default {
         }
     },
 
+    parseMsgState: function (_state) {
+        if (_state === 1) {
+            return "正在播放";
+        } else if (_state === -1) {
+            return "已播放";
+        } else {
+            return "准备播放";
+        }
+    },
+
     toastSuccess: function (_vue, _message) {
         _vue.$toast.open({
             queue: false,
