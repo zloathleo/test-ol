@@ -3,25 +3,23 @@ import Mock from 'mockjs'
 import myaxios from './myaxios';
 
 let mock = new MockAdapter(myaxios, {
-    delayResponse: 300
+    delayResponse: 100
 });
 
-mock.onGet('/dashboard-commondata').reply(200, Mock.mock(
+mock.onPost('/account/login').reply(200, Mock.mock(
     {
-        d1: 100,
-        d2: 0,
-        d3: 0,
-        d4: 1,
+        'token': "test-token",
+        'type': "operator",
     }
 ));
 
-mock.onGet('/dashboard-data').reply(200, Mock.mock({
-    "def":
-        {
-            label: 'def',
-            beginTime: 0,
-            endTime: 0,
-            status: 1,
-            updateTime: 0,
-        }
+mock.onGet('/messages').reply(200, Mock.mock({
+    "rows|45": [{
+        'type': 'audio',
+        'name|+1': 1,
+        'endTime': 0,
+        'startTime': 1,
+        'status': 0,
+    }],
+    "total": 50
 }));

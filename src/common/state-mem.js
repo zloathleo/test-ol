@@ -16,12 +16,12 @@ const store = new Vuex.Store({
                 state.menuItems = undefined;
             } else {
                 if (value.type == "admin") {
-                    state.dashboardRouteName = "group";
-                    state.currentRouteName = "group";
+                    state.dashboardRouteName = "adminDashboard";
+                    state.currentRouteName = "adminDashboard";
                     state.menuItems = globalvar.adminMenuItems;
                 } else if (value.type == "operator") {
-                    state.dashboardRouteName = "device";
-                    state.currentRouteName = "device";
+                    state.dashboardRouteName = "operatorDashboard";
+                    state.currentRouteName = "operatorDashboard";
                     state.menuItems = globalvar.operatorMenuItems;
                 }
             }

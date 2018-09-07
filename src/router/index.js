@@ -23,23 +23,11 @@ export default new Router({
       children: [
         //operator
         {
-          name: 'device',
-          path: '/device',
-          component: resolve => require(['../components/device/Content.vue'], resolve),
-          meta: { title: 'device' }
-        },
-        {
-          name: 'page',
-          path: '/page',
-          component: resolve => require(['../components/page/Content.vue'], resolve),
-          meta: { title: 'page' }
-        },
-        {
-          name: 'message',
-          path: '/message',
-          component: resolve => require(['../components/message/Content.vue'], resolve),
-          meta: { title: 'message' }
-        },
+          name: 'operatorDashboard',
+          path: '/operatorDashboard',
+          component: resolve => require(['../components/operator-dashboard/Content.vue'], resolve),
+          meta: { title: 'operatorDashboard' }
+        }, 
       ]
     },
     {

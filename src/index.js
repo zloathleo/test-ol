@@ -2,10 +2,7 @@ import 'promise-polyfill/src/polyfill';
 
 import Vue from 'vue';
 import Vuex from 'vuex';
-
-import Buefy from 'buefy';
-// import 'buefy/lib/buefy.css';
-
+ 
 import './common/initjs';
 
 import globalvar from './common/globalvar';
@@ -16,15 +13,11 @@ import router from './router';
 import App from './App';
 
 //是否模拟数据
-// import './common/mock';
+import './common/mock';
 
-import './assets/scss/bulma.scss' 
-import './assets/css/global.css';
-import './assets/css/materialdesignicons.min.css';
-
-Vue.use(Buefy, {
-  defaultIconPack: 'mdi',
-});
+import './assets/css/font-awesome.min.css' 
+import './assets/css/w3.css' 
+import './assets/css/global.css'; 
 
 
 //vue内部常用

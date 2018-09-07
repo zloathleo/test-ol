@@ -1,31 +1,90 @@
 <template>
 
-    <div>
-        <section class="hero is-primary">
-            <Toolbar />
-        </section>
-        <b-loading :is-full-page="true" :active.sync="isAppLoading"></b-loading>
-        <Drawer />
+  <div style="height:100%">
+    <nav class="w3-sidenav w3-light-grey w3-animate-left sidenav" v-bind:class="[ sidenavOpen ? 'w3-show': 'w3-hide' ]" style="z-index:4">
+      <div class="w3-container">
+        <h5>Dashboard</h5>
+      </div>
+      <a href="#" class="w3-padding w3-blue">
+        <i class="fa fa-users"></i>  Overview</a>
+      <a href="#" class="w3-padding">
+        <i class="fa fa-eye"></i>  Views</a>
+      <a href="#" class="w3-padding">
+        <i class="fa fa-users"></i>  Traffic</a>
+      <a href="#" class="w3-padding">
+        <i class="fa fa-bullseye"></i>  Geo</a>
+      <a href="#" class="w3-padding">
+        <i class="fa fa-diamond"></i>  Orders</a>
+      <a href="#" class="w3-padding">
+        <i class="fa fa-bell"></i>  News</a>
+      <a href="#" class="w3-padding">
+        <i class="fa fa-bank"></i>  General</a>
+      <a href="#" class="w3-padding">
+        <i class="fa fa-history"></i>  History</a>
+      <a href="#" class="w3-padding">
+        <i class="fa fa-cog"></i>  Settings</a><br><br>
+    </nav>
 
-        <main class="main-container">
-            <div class="content">
-                <router-view></router-view>
-            </div>
-        </main>
-        <!-- <Footer /> -->
+    <header class="w3-container w3-top w3-black w3-large" style="z-index:4">
+      <ul class="w3-navbar">
+        <li>
+          <a class="w3-padding-16" href="#" @click="openSidenav">
+            <i class="topnav-icons fa fa-bars"></i>
+          </a>
+        </li>
+        <li>
+          <a class="w3-padding-16" href="#">Link 1</a>
+        </li>
+        <li>
+          <a class="w3-padding-16" href="#">Link 2</a>
+        </li>
+        <li>
+          <a class="w3-padding-16" href="#">Link 3</a>
+        </li>
+        <li class="w3-right">
+          <a class="w3-padding-16" href="#">Link 3</a>
+        </li>
+      </ul>
+    </header>
+
+    <!-- Page content -->
+    <div class="w3-container page-contetn">
+      <router-view></router-view>
     </div>
 
+    <footer class="w3-container w3-bottom w3-light-grey">
+      <p class="w3-small w3-hide-small">Footer information goes here</p>
+    </footer>
+
+    <div class="w3-overlay" v-bind:class="{ 'w3-show': sidenavOpen }" @click="closeSidenav" style="cursor:pointer"></div>
+
+  </div>
 </template>
 
+
+ 
 <style scoped lang="less">
-.main-container {
-  min-height: 1048px;
-  background-color: #f5f5f5;
-  .content {
-    background-color: white; 
-    margin: 0px 20px;
-    padding: 20px;
-    max-width: 100%;
+.page-contetn {
+  padding-top: 80px;
+  padding-bottom: 64px; //desk 有foot
+  overflow: auto;
+  height: 100%;
+}
+.sidenav {
+  padding: 64px 8px 0px 8px;
+}
+
+@media screen and (max-width: 600px) {
+  .page-contetn {
+    padding-bottom: 1rem;
+  }
+  .w3-navbar li:not(.w3-opennav) {
+    float: left;
+    width: auto !important;
+  }
+  .w3-navbar li.w3-right {
+    float: right;
+    float: auto !important;
   }
 }
 </style>
@@ -36,20 +95,20 @@ import Toolbar from './Toolbar.vue';
 import Drawer from './Drawer.vue';
 // import Footer from './Footer.vue';
 export default {
-    components: { Toolbar, Drawer },
+  components: { Toolbar, Drawer },
 
-    data() {
-        return {
-            isAppLoading: false,//是否loading状态
-        }
-    },
-    beforeMount() {
-        let _this = this;
-        this.$globalEventHub.$on("appLoading", function (value) {
-            _this.isAppLoading = value;
-        });
-    },
-    methods: {
+  data() {
+    return {
+      sidenavOpen: false,//sidenav
     }
+  },
+  methods: {
+    closeSidenav: function () {
+      this.sidenavOpen = false;
+    },
+    openSidenav: function () {
+      this.sidenavOpen = true;
+    },
+  }
 }
 </script>

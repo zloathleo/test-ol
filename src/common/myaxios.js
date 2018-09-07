@@ -10,7 +10,7 @@ axios.defaults.headers = {
     'Cache-Control': 'no-cache,no-store',
 }
 
-axios.defaults.timeout = 10000;
+axios.defaults.timeout = 6000;
 
 //不使用URLSearchParams  
 axios.defaults.transformRequest = [function (data) {

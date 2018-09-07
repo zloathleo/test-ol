@@ -85,12 +85,13 @@ export default {
     },
 
     toastSuccess: function (_vue, _message) {
-        _vue.$toast.open({
-            queue: false,
-            message: _message,
-            position: 'is-bottom',
-            type: 'is-success'
-        });
+        // _vue.$toast.open({
+        //     queue: false,
+        //     message: _message,
+        //     position: 'is-bottom',
+        //     type: 'is-success'
+        // });
+        console.info(_message);
     },
 
     toastError: function (_vue, errdesc, error) {
@@ -99,12 +100,13 @@ export default {
             console.error(error);
             _message += " - " + this.parseError(error)
         }
-        _vue.$toast.open({
-            queue: false,
-            message: _message,
-            position: 'is-bottom',
-            type: 'is-danger'
-        });
+        console.error(_message);
+        // _vue.$toast.open({
+        //     queue: false,
+        //     message: _message,
+        //     position: 'is-bottom',
+        //     type: 'is-danger'
+        // });
     },
 
     parseError: function (error) {

@@ -3,31 +3,15 @@
 
         <div class="content">
 
-            <div class="columns is-mobile">
-                <div class="column" />
-                <div class="column is-half-mobile is-one-quarter-tablet">
+            <div style="margin: auto;max-width:280px">
+                <img src="assets/img/login/logo.png" alt="">
 
-                    <img src="assets/img/login/logo.png" alt="">
-                    <div class="">
-                        <b-field>
-                            <b-input ref="inputUsername" size="is-small" placeholder="用户名..." icon="account" rounded>
-                            </b-input>
-                        </b-field>
+                <input ref="inputUsername" class="w3-input w3-border w3-small w3-padding-small w3-margin-4" placeholder="用户名..." type="text">
+                <input ref="inputPassword" class="w3-input w3-border w3-small w3-padding-small w3-margin-4" placeholder="密码..." type="password">
 
-                        <b-field>
-                            <b-input ref="inputPassword" size="is-small" type="password" placeholder="密码..." icon="textbox-password" password-reveal rounded>
-                            </b-input>
-                        </b-field>
-
-                        <div class="columns is-mobile loginButtonPane">
-                            <button ref="loginSubmit" class="button is-small is-primary column is-half is-offset-one-quarter loginButton" v-bind:class="{ 'is-loading': isLogining }" @click="login">
-                                系统登录
-                            </button>
-                        </div>
-                    </div>
-
+                <div class="w3-right-align">
+                    <button ref="loginSubmit" class="w3-btn w3-indigo w3-small" v-bind:class="{ 'w3-disabled': isLogining }" @click="login"> 系统登录</button>
                 </div>
-                <div class="column" />
             </div>
 
         </div>
@@ -49,12 +33,6 @@
   top: 150px;
   position: relative;
   padding: 1rem;
-}
-.loginButtonPane {
-  padding: 0.5rem;
-  .loginButton {
-    padding: 0rem;
-  }
 }
 </style>
 
@@ -82,8 +60,8 @@ export default {
     methods: {
         login: function () {
             this.isLogining = true;
-            let un = this.$refs.inputUsername.newValue;
-            let pw = this.$refs.inputPassword.newValue;
+            let un = this.$refs.inputUsername.value;
+            let pw = this.$refs.inputPassword.value;
             let _this = this;
 
             if (un && pw && un.length > 1 && pw.length > 0) {
@@ -98,16 +76,16 @@ export default {
                     _this.$globalvar.toastSuccess(_this, "用户登录成功,进入主页面");
 
                     let _user = res.data;
-                    
+
                     _this.$myaxios.defaults.headers.accessToken = _user.token;
                     statePersisted.commit("setUser", _user);
                     stateMem.commit("initUserUI", _user);
 
-                    _this.isLogining = false;
 
                     let _routeName = stateMem.state.dashboardRouteName;
                     console.log(_routeName);
                     setTimeout(function () {
+                        _this.isLogining = false;
                         _this.$router.push({ name: _routeName });
                     }, 500);
 

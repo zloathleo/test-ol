@@ -1,7 +1,7 @@
 {
-  "name": "ggjadminv3",
+  "name": "test-ol",
   "version": "1.0.0",
-  "description": "ggjadminv3",
+  "description": "test-ol",
   "main": "",
   "scripts": {
     "dev": "webpack --watch --config build/webpack.config.dev.js",
