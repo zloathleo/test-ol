@@ -5,7 +5,7 @@
         </li>
 
         <li v-for="index in pageCount" @click="clickPageCount(index)">
-            <a v-bind:class="{ 'w3-green': current === index }" href="#">{{index}}</a>
+            <a v-bind:class="{ 'color-primary': current === index }" href="#">{{index}}</a>
         </li>
 
         <li>
@@ -28,7 +28,7 @@ export default {
             this.pageCount = Math.ceil(this.total / this.perPage);
         },
         'perPage': function () { 
-            this.current = 1;
+            // this.current = 1;
             this.pageCount = Math.ceil(this.total / this.perPage);
         }
     },

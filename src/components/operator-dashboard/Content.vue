@@ -2,33 +2,33 @@
   <div>
     <DefaultToolbar title="管理" @addItem="addItem" @refreshTable="refreshTable" @searchTable="searchTable" @pageCountChange="pageCountChange" />
 
-    <table class="w3-table w3-striped w3-bordered w3-border">
+    <table class="w3-table w3-striped w3-bordered w3-border w3-hoverable w3-white">
       <thead>
         <tr class="w3-light-grey">
-          <th class="text-center">#</th>
-          <th class="text-center">消息类型</th>
-          <th class="text-center">消息内容</th>
-          <th class="text-center">生效时间</th>
-          <th class="text-center">结束时间</th>
-          <th class="text-center">状态</th>
-          <th class="text-center">操作</th>
+          <th>#</th>
+          <th>消息类型</th>
+          <th>消息内容</th>
+          <th>生效时间</th>
+          <th>结束时间</th>
+          <th>状态</th>
+          <th>操作</th>
         </tr>
       </thead>
       <tr v-for="(item, index) in currentPageData">
-        <td class="text-center">{{index + 1}}</td>
-        <td class="text-center">{{item.type === 'audio' ? '语音' :'文字'}}</td>
-        <td class="text-center">{{item.name}}</td>
-        <td class="text-center">{{$globalvar.parseDateTime(item.startTime)}}</td>
-        <td class="text-center">{{$globalvar.parseDateTime(item.endTime)}}</td>
-        <td class="text-center">{{$globalvar.parseMsgState(item.status)}}</td>
-        <td class="text-center">
-          <button class="w3-btn w3-small w3-padding-small w3-indigo" v-on:click="editItem(item)">编辑</button>
+        <td>{{index + 1}}</td>
+        <td>{{item.type === 'audio' ? '语音' :'文字'}}</td>
+        <td>{{item.name}}</td>
+        <td>{{$globalvar.parseDateTime(item.startTime)}}</td>
+        <td>{{$globalvar.parseDateTime(item.endTime)}}</td>
+        <td>{{$globalvar.parseMsgState(item.status)}}</td>
+        <td>
+          <button class="w3-btn w3-small w3-padding-small color-primary" v-on:click="editItem(item)">编辑</button>
           <button class="w3-btn w3-small w3-padding-small w3-red" v-on:click="deleteItem(item)">删除</button>
         </td>
       </tr>
     </table>
 
-    <Pagination :total="total" :current.sync="currentPage"  :per-page="perPage">
+    <Pagination :total="total" :current.sync="currentPage" :per-page="perPage">
     </Pagination>
 
   </div>
@@ -103,6 +103,7 @@ export default {
     },
     //每页显示数量
     pageCountChange(_pageCount) {
+      this.currentPage = 1;
       this.perPage = _pageCount;
     },
     //添加

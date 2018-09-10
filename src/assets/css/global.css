@@ -3,3 +3,8 @@ body {
     height: 100%;
     overflow: hidden;
 }
+
+.color-primary {
+    color: #fff !important;
+    background-color: #2780E3 !important;
+}

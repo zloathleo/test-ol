@@ -5,7 +5,7 @@
       <div class="w3-container">
         <h5>Dashboard</h5>
       </div>
-      <a href="#" class="w3-padding w3-blue">
+      <a href="#" class="w3-padding color-primary">
         <i class="fa fa-users"></i>  Overview</a>
       <a href="#" class="w3-padding">
         <i class="fa fa-eye"></i>  Views</a>
@@ -25,30 +25,30 @@
         <i class="fa fa-cog"></i>  Settings</a><br><br>
     </nav>
 
-    <header class="w3-container w3-top w3-black w3-large" style="z-index:4">
+    <header class="w3-container w3-top color-primary" style="z-index:4">
       <ul class="w3-navbar">
         <li>
-          <a class="w3-padding-16" href="#" @click="openSidenav">
+          <a class="w3-padding-16 w3-hover-blue" href="#" @click="openSidenav">
             <i class="topnav-icons fa fa-bars"></i>
           </a>
         </li>
         <li>
-          <a class="w3-padding-16" href="#">Link 1</a>
+          <a class="w3-padding-16 w3-hover-blue" href="#">Link 1</a>
         </li>
         <li>
-          <a class="w3-padding-16" href="#">Link 2</a>
+          <a class="w3-padding-16 w3-hover-blue" href="#">Link 2</a>
         </li>
         <li>
-          <a class="w3-padding-16" href="#">Link 3</a>
+          <a class="w3-padding-16 w3-hover-blue" href="#">Link 3</a>
         </li>
         <li class="w3-right">
-          <a class="w3-padding-16" href="#">Link 3</a>
+          <a class="w3-padding-16 w3-hover-blue" href="#">Link 3</a>
         </li>
       </ul>
     </header>
 
     <!-- Page content -->
-    <div class="w3-container page-contetn">
+    <div class="w3-container page-content">
       <router-view></router-view>
     </div>
 
@@ -64,8 +64,8 @@
 
  
 <style scoped lang="less">
-.page-contetn {
-  padding-top: 80px;
+.page-content {
+  padding-top: 64px;
   padding-bottom: 64px; //desk 有foot
   overflow: auto;
   height: 100%;
