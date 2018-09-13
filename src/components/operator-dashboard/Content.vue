@@ -23,7 +23,7 @@
         <td>{{$globalvar.parseMsgState(item.status)}}</td>
         <td>
           <button class="w3-btn w3-small w3-padding-small color-primary" v-on:click="editItem(item)">编辑</button>
-          <button class="w3-btn w3-small w3-padding-small w3-red" v-on:click="deleteItem(item)">删除</button>
+          <button class="w3-btn w3-small w3-padding-small color-danger" v-on:click="deleteItem(item)">删除</button>
         </td>
       </tr>
     </table>

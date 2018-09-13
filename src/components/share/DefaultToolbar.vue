@@ -16,25 +16,24 @@
                 <button class="w3-btn w3-small w3-padding-small color-primary toolbar-margin-right" style="width:4rem" v-on:click="addItem">
                     <i class="fa fa-plus" aria-hidden="true"></i>
                     添加</button>
-                <button class="w3-btn w3-small w3-padding-small w3-green" style="width:4rem" v-on:click="refreshTable">
+                <button class="w3-btn w3-small w3-padding-small color-success" style="width:4rem" v-on:click="refreshTable">
                     <i class="fa fa-refresh w3-padding-tiny" aria-hidden="true"></i>刷新</button>
             </div>
-
         </div>
 
         <div class="title">
-             {{title}} 
+            {{title}}
         </div>
     </div>
 </template>
 
 <style scoped lang="less">
-.title{
-    font-size: 20px;
-    font-weight: 600;
+.title {
+  font-size: 20px;
+  font-weight: 600;
 }
 .toolbar-margin {
-  margin-bottom: 0.5rem;
+  margin-bottom: 1rem;
 }
 .toolbar-right {
   display: flex;
@@ -43,10 +42,10 @@
     margin-right: 0.3rem;
   }
   .toolbar-search {
-    display: flex; 
+    display: flex;
   }
   .toolbar-bottons {
-    display: flex; 
+    display: flex;
   }
 }
 </style>

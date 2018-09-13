@@ -33,16 +33,19 @@
           </a>
         </li>
         <li>
-          <a class="w3-padding-16 w3-hover-blue" href="#">Link 1</a>
+          <a class="w3-padding-16 w3-hover-blue" href="#">Home</a>
         </li>
         <li>
-          <a class="w3-padding-16 w3-hover-blue" href="#">Link 2</a>
+          <a class="w3-padding-16 w3-hover-blue" href="#">Config</a>
         </li>
         <li>
-          <a class="w3-padding-16 w3-hover-blue" href="#">Link 3</a>
+          <a class="w3-padding-16 w3-hover-blue" href="#">About</a>
         </li>
         <li class="w3-right">
-          <a class="w3-padding-16 w3-hover-blue" href="#">Link 3</a>
+          <a class="w3-btn color-transparent w3-padding-16 w3-hover-blue" @click="clickLogout">
+            <i class="fa fa-user-o" />
+            <span>Login</span>
+          </a>
         </li>
       </ul>
     </header>
@@ -65,7 +68,7 @@
  
 <style scoped lang="less">
 .page-content {
-  padding-top: 64px;
+  padding-top: 72px;
   padding-bottom: 64px; //desk 有foot
   overflow: auto;
   height: 100%;
@@ -109,6 +112,9 @@ export default {
     openSidenav: function () {
       this.sidenavOpen = true;
     },
+    clickLogout: function () {
+      this.$router.push({ name: "login" });
+    }
   }
 }
 </script>

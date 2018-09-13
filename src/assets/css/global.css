@@ -4,7 +4,40 @@ body {
     overflow: hidden;
 }
 
+table {
+    font-size: 12px;
+}
+
+table tr td {
+    vertical-align: middle !important;
+}
+
 .color-primary {
     color: #fff !important;
-    background-color: #2780E3 !important;
+    background-color: #5c90d2 !important;
+}
+
+.color-success {
+    color: #fff !important;
+    background-color: #46c37b !important;
+}
+
+.color-danger {
+    color: #fff !important;
+    background-color: #d26a5c !important;
+}
+
+.color-secondary {
+    color: #fff !important;
+    background-color: #eee !important;
+}
+
+.color-warning {
+    color: #fff !important;
+    background-color: #E99002 !important;
+}
+
+.color-transparent {
+    color: #fff !important;
+    background-color: transparent !important;
 }

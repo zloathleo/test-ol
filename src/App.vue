@@ -9,9 +9,5 @@
 import Loading from './components/framework/Loading.vue';
 export default {
   components: { Loading },
-
-  beforeMount() {
-
-  },
 }
 </script>
